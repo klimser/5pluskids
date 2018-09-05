@@ -144,7 +144,7 @@ trait UploadImage
                     $imageWidth = $params[0];
                     $imageHeight = $params[1];
                     if ($params[2] == IMAGETYPE_PNG) $image = imagecreatefrompng($sourcePath);
-                    elseif ($params[3] == IMAGETYPE_JPEG) $image = imagecreatefromjpeg($sourcePath);
+                    elseif ($params[2] == IMAGETYPE_JPEG) $image = imagecreatefromjpeg($sourcePath);
                     else throw new \Exception('Wrong image type');
                     if ($image) {
                         $scaleWidth = $width;
@@ -159,7 +159,7 @@ trait UploadImage
                         $scaled = imagescale($image, $scaleWidth, $scaleHeight, IMG_BICUBIC);
 
                         if ($params[2] == IMAGETYPE_PNG) imagepng($scaled, $destPath);
-                        elseif ($params[3] == IMAGETYPE_JPEG) imagejpeg($scaled, $destPath, 100);
+                        elseif ($params[2] == IMAGETYPE_JPEG) imagejpeg($scaled, $destPath, 100);
                         imagedestroy($image);
                         imagedestroy($scaled);
                     }
