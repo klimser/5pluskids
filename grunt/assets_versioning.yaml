@@ -1,0 +1,18 @@
+options:
+  tag: "hash"
+  versionsMapFile: "frontend/views/grunt-assets.php"
+  versionsMapTemplate: "frontend/components/helpers/GruntAssetHelper.php.tpl"
+  versionsMapTrimPath: "frontend/web/"
+  post: true
+dev:
+  options:
+    tasks:
+      - less:dev
+      - uglify:vendors
+      - uglify:dev
+prod:
+  options:
+    tasks:
+      - less:prod
+      - uglify:vendors
+      - uglify:prod

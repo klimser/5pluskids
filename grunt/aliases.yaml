@@ -1,0 +1,28 @@
+default:
+  tasks:
+    - clean
+    - less:dev
+    - copy:fonts
+    - copy:images
+    - uglify:vendors
+    - uglify:dev
+    - assets_versioning:dev
+    - watch
+dev:
+  tasks:
+    - clean
+    - less:dev
+    - copy:fonts
+    - copy:images
+    - uglify:vendors
+    - uglify:dev
+    - assets_versioning:dev
+prod:
+  tasks:
+    - clean
+    - copy:fonts
+    - copy:images
+    - less:prod
+    - uglify:vendors
+    - uglify:prod
+    - assets_versioning:prod

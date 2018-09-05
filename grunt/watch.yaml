@@ -1,0 +1,15 @@
+less:
+  files:
+    - "frontend/resources/src/less/*.less"
+    - "grunt/less.yaml"
+  tasks:
+    - less:dev
+    - assets_versioning:dev
+uglify:
+  files:
+    - "frontend/resources/src/js/*.js"
+    - "grunt/uglify.yaml"
+  tasks:
+    - uglify:vendors
+    - uglify:dev
+    - assets_versioning:dev

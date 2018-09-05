@@ -1,0 +1,13 @@
+dev:
+  options:
+    sourceMap: true
+    sourceMapURL: main.css.map
+  files:
+    "frontend/web/assets/grunt/css/main.css": "frontend/resources/src/less/main.less"
+prod:
+  options:
+    compress: true
+    yuicompress: true
+    optimization: 2
+  files:
+    "frontend/web/assets/grunt/css/main.css": "frontend/resources/src/less/main.less"
