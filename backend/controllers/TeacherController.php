@@ -68,12 +68,12 @@ class TeacherController extends AdminController
      */
     public function processTeacherData(Teacher $teacher)
     {
-        if (Yii::$app->request->isPost) {
+        if (\Yii::$app->request->isPost) {
             $isNew = $teacher->isNewRecord;
-            $transaction = Teacher::getDb()->beginTransaction();
+            $transaction = \Yii::$app->db->beginTransaction();
             try {
                 /*     Сохраняем учителя      */
-                if (!$teacher->load(Yii::$app->request->post())) \Yii::$app->session->addFlash('error', 'Form data not found');
+                if (!$teacher->load(\Yii::$app->request->post())) \Yii::$app->session->addFlash('error', 'Form data not found');
                 else {
                     $teacher->photoFile = yii\web\UploadedFile::getInstance($teacher, 'photoFile');
                     if (!$teacher->save()) {
@@ -93,7 +93,7 @@ class TeacherController extends AdminController
                             } else {
                                 $webpage = $teacher->webpage;
                             }
-                            if (!$webpage->load(Yii::$app->request->post())) {
+                            if (!$webpage->load(\Yii::$app->request->post())) {
                                 \Yii::$app->session->addFlash('error', 'Form data not found');
                                 $transaction->rollBack();
                             } elseif (!$webpage->save()) {
@@ -102,7 +102,7 @@ class TeacherController extends AdminController
                             } else {
                                 if (!$teacher->webpage_id) $teacher->link('webpage', $webpage);
                                 $transaction->commit();
-                                Yii::$app->session->addFlash('success', $isNew ? 'Учитель добавлен' : 'Учитель обновлён');
+                                \Yii::$app->session->addFlash('success', $isNew ? 'Учитель добавлен' : 'Учитель обновлён');
                                 return $this->redirect(['update', 'id' => $teacher->id]);
                             }
                         }

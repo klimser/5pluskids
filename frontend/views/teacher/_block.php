@@ -4,7 +4,7 @@
 /* @var $teacher \common\models\Teacher */
 
 ?>
-<div class="col-xs-12 col-sm-6 subject-item">
+<div class="col-xs-12 col-sm-6 teacher-item">
     <div class="teacher-page-item">
         <a href="<?= Yii::$app->homeUrl . $teacher->webpage->url; ?>">
             <img src="<?= $teacher->photo ? $teacher->imageUrl : $teacher->noPhotoUrl; ?>" class="max-width-100">

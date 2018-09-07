@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = 'Команда';
         <div class="col-xs-12 more-block">
             <a href="<?= Yii::$app->homeUrl . $webpage->url; ?>" onclick="return Main.loadMore(this, '.teacher-index', '.teacher-item');">
                 <span class="icon icon-more"></span>
-                <span class="link-body">Ещё курсы</span>
+                <span class="link-body">Показать ещё</span>
             </a>
         </div>
     </div>

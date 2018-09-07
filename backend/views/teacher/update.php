@@ -8,7 +8,7 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = $teacher->isNewRecord ? 'Новый учитель' : $teacher->name;
 $this->params['breadcrumbs'][] = ['label' => 'Учителя', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $teacher->name;
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="teacher-update">
