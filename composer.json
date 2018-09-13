@@ -8,7 +8,7 @@
   ],
   "homepage": "http://www.5pluskids.uz/",
   "type": "project",
-  "license": "BSD-3-Clause",
+  "license": "GPL-3.0-or-later",
   "support": {
     "issues": "https://5pluskids.uz/contacts"
   },
