@@ -1,9 +1,12 @@
 <?php
 namespace frontend\controllers;
 
+use common\components\helpers\Xml;
 use common\models\Module;
 use common\models\Page;
 use common\models\Subject;
+use common\models\SubjectAge;
+use common\models\Teacher;
 use common\models\Webpage;
 use yii;
 use yii\web\Controller;
@@ -22,12 +25,6 @@ class SiteController extends Controller
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-                'width' => 300,
-                'height' => 100,
-            ],
         ];
     }
     
@@ -36,23 +33,36 @@ class SiteController extends Controller
         $urlArray = [Yii::$app->params['siteUrl']];
 
         /** @var Page[] $pages */
-        $pages = Page::find()->where(['published' => Page::STATUS_ACTIVE])->with('webpage')->all();
+        $pages = Page::find()->where(['active' => Page::STATUS_ACTIVE])->with('webpage')->all();
         foreach ($pages as $page) {
             if (!$page->webpage->main) $urlArray[] = Yii::$app->params['siteUrl'] . '/' . $page->webpage->url;
         }
 
         /** @var Subject[] $subjects */
-        $subjects = Subject::find()->where(['active' => Subject::STATUS_ACTIVE])->with('subjectPage.webpage')->all();
+        $subjects = Subject::find()->where(['active' => Subject::STATUS_ACTIVE])->with('webpage')->all();
         foreach ($subjects as $subject) {
-            if ($subject->subjectPage) $urlArray[] = Yii::$app->params['siteUrl'] . '/' . $subject->subjectPage->webpage->url;
+            $urlArray[] = Yii::$app->params['siteUrl'] . '/' . $subject->webpage->url;
+        }
+
+        /** @var Subject[] $subjects */
+        $subjects = SubjectAge::find()->where(['active' => SubjectAge::STATUS_ACTIVE])->with('webpage')->all();
+        foreach ($subjects as $subject) {
+            $urlArray[] = Yii::$app->params['siteUrl'] . '/' . $subject->webpage->url;
+        }
+
+        /** @var Teacher[] $teachers */
+        $teachers = Teacher::find()->where(['active' => Teacher::STATUS_ACTIVE])->with('webpage')->all();
+        foreach ($teachers as $teacher) {
+            $urlArray[] = Yii::$app->params['siteUrl'] . '/' . $teacher->webpage->url;
         }
 
         $singlePages = [
+            ['subject', 'index'],
+            ['subject-age', 'index'],
             ['review', 'index'],
             ['teacher', 'index'],
-            ['quiz', 'list'],
-            ['high_school', 'index'],
-            ['lyceum', 'index'],
+            ['news', 'index'],
+            ['promotions', 'index'],
         ];
 
         foreach ($singlePages as $singlePage) {
@@ -70,46 +80,6 @@ class SiteController extends Controller
         $headers = Yii::$app->response->headers;
         $headers->add('Content-Type', 'application/xml');
 
-        return $this->arrayToXml([['tag' => 'urlset', '@attributes' => ['xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9'], 'body' => $data]]);
-    }
-
-    /**
-     * Получить xml из array
-     *
-     * @param array $array
-     *
-     * @return string
-     */
-    private function arrayToXml($array)
-    {
-        $xmlResult = '';
-        foreach ($array as $key => $value) {
-            if ($key === '@attributes' || $key === 'tag') continue;
-            $xmlStruct = [];
-            if (is_array($value) && array_key_exists('tag', $value)) $xmlStruct['tag'] = $value['tag'];
-            else $xmlStruct['tag'] = $key;
-
-            if (is_array($value)) {
-                if (array_key_exists('@attributes', $value)) $xmlStruct['@attributes'] = $value['@attributes'];
-
-                if (array_key_exists('body', $value)) {
-                    if (is_array($value['body'])) $xmlStruct['body'] = self::arrayToXml($value['body']);
-                    else $xmlStruct['body'] = $value['body'];
-                } else {
-                    $xmlStruct['body'] = self::arrayToXml($value);
-                }
-            } else {
-                $xmlStruct['body'] = $value;
-            }
-
-            $propertiesString = '';
-            if (array_key_exists('@attributes', $xmlStruct) && is_array($xmlStruct['@attributes'])) {
-                foreach ($xmlStruct['@attributes'] as $attributeName => $attributeValue) {
-                    $propertiesString .= ' ' . $attributeName . '="' . htmlspecialchars($attributeValue, ENT_QUOTES|ENT_HTML5, 'UTF-8') . '" ';
-                }
-            }
-            $xmlResult .= '<' . $xmlStruct['tag'] . $propertiesString . ((!empty($xmlStruct['body']) || $xmlStruct['body'] === '0') ? '>' . $xmlStruct['body'] . '</' . $xmlStruct['tag'] . '>' : '/>');
-        }
-        return $xmlResult;
+        return Xml::arrayToXml([['tag' => 'urlset', '@attributes' => ['xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9'], 'body' => $data]]);
     }
 }

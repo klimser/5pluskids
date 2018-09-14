@@ -55,7 +55,7 @@ class Xml
      * @param array $array
      * @return string
      */
-    public static function arrayToXml(array $array)
+    public static function arrayToXml(array $array): string
     {
         $xmlResult = '';
         foreach ($array as $key => $value) {
