@@ -45,14 +45,13 @@ class Webpage extends BaseObject
 
     /**
      * @param \common\models\Webpage $webpage
-     * @return bool
      */
     public static function clearCache(\common\models\Webpage $webpage)
     {
         if (array_key_exists('url', $webpage->oldAttributes) && $webpage->oldAttributes['url'] != $webpage->url) {
             \Yii::$app->cache->delete(self::getCacheKey($webpage->oldAttributes['url']));
         }
-        return \Yii::$app->cache->delete(self::getCacheKey($webpage))
-            && ($webpage->main ? \Yii::$app->cache->delete('webpage-main') : true);
+        \Yii::$app->cache->delete(self::getCacheKey($webpage));
+        \Yii::$app->cache->delete('webpage-main');
     }
 }
