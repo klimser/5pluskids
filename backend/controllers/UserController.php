@@ -52,7 +52,7 @@ class UserController extends AdminController
 
         if (Yii::$app->request->isPost) {
             $employee->load(Yii::$app->request->post());
-            $employee->status = User::STATUS_ACTIVE;
+            $employee->active = User::STATUS_ACTIVE;
             $employee->setPassword($employee->password);
             $employee->generateAuthKey();
 
