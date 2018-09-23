@@ -127,12 +127,15 @@ $this->render('/grunt-assets');
                     <?= WidgetHtml::getByName('address'); ?>
                 </div>
                 <div class="visible-sm clearfix"></div>
-                <div class="social-block col-xs-12 col-sm-4 col-md-2 col-md-offset-1">
+                <div class="social-block col-xs-12 col-sm-4 col-md-3">
                     <div class="social-links text-center">
                         <?= WidgetHtml::getByName('social'); ?>
                     </div>
                     <div>
-                        Дизайн сайта <a href="http://korden.uz"><img src="<?= Yii::$app->homeUrl; ?>assets/grunt/images/korden_logo.png"></a>
+                        Сайт сделал <a href="https://sergey-klimov.ru">Сергей Климов</a>
+                    </div>
+                    <div>
+                        Дизайн <a href="http://korden.uz"><img src="<?= Yii::$app->homeUrl; ?>assets/grunt/images/korden_logo.png"></a>
                     </div>
                 </div>
             </div>
