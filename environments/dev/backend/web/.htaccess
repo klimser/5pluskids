@@ -3,10 +3,6 @@
 
     Options +FollowSymLinks
 
-    RewriteCond %{REQUEST_FILENAME} @2x\.[a-zA-Z]+$ [NC]
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteRule ^(.*)@2x(\.[a-zA-Z]+)$ $1$2
-
     # if a directory or a file exists, use it directly
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
