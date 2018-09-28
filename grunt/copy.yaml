@@ -19,9 +19,8 @@ images:
   files:
     -
       expand: true
-      flatten: true
-      src:
-        - frontend/resources/src/images/*
+      cwd: frontend/resources/src/images/
+      src: '**'
       dest: frontend/web/assets/grunt/images
     -
       expand: true
