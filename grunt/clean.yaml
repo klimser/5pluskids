@@ -5,3 +5,8 @@ default:
     - "frontend/web/assets/grunt/webfonts"
     - "frontend/web/assets/grunt/images"
     - "frontend/web/assets/grunt/js"
+    - "backend/web/assets/grunt/css"
+    - "backend/web/assets/grunt/fonts"
+    - "backend/web/assets/grunt/webfonts"
+    - "backend/web/assets/grunt/images"
+    - "backend/web/assets/grunt/js"

@@ -9,7 +9,6 @@ if ($webpage === null) $webpage = new \common\models\Webpage();
 
 if ($webpage->module) $module = $webpage->module;
 if (isset($module) && $module && ($module->field_for_url || $module->field_for_title)) {
-    \backend\assets\WebpageAsset::register($this);
     $js = '';
     if ($module->field_for_url) {
         $js .= 'Webpage.urlSelector = "#' . $module->field_for_url . '"; ';
@@ -17,7 +16,7 @@ if (isset($module) && $module && ($module->field_for_url || $module->field_for_t
     if ($module->field_for_title) {
         $js .= 'Webpage.titleSelector = "#' . $module->field_for_title . '"; ';
     }
-    $this->registerJs($js,\yii\web\View::POS_HEAD);
+    $this->registerJs($js,\yii\web\View::POS_END);
 }
 ?>
 

@@ -15,19 +15,6 @@ return [
         '@resources' => '@app/resources',
     ],
     'components' => [
-        'assetManager' => [
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'js' => []
-                ],
-                'yii\bootstrap\BootstrapAsset' => [
-                    'css' => []
-                ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js' => []
-                ],
-            ],
-        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

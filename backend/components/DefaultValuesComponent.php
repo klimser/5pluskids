@@ -54,7 +54,7 @@ class DefaultValuesComponent extends Component
                 'filemanager_title' => 'Responsive Filemanager',
                 'external_plugins' => [
                     'filemanager' => \Yii::$app->getHomeUrl() . 'filemanager/filemanager/plugin.min.js',
-                    'responsivefilemanager' => \Yii::$app->getHomeUrl() . 'js/responsivefilemanager/plugin.min.js',
+                    'responsivefilemanager' => \Yii::$app->getHomeUrl() . 'filemanager/responsivefilemanager/plugin.min.js',
                 ],
                 'relative_urls' => false,
             ]

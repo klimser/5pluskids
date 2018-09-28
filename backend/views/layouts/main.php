@@ -3,17 +3,18 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
-AppAsset::register($this);
-
 ?>
-<?php $this->beginPage() ?>
+<?php
+$this->beginPage();
+$this->render('/grunt-assets');
+?>
+
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -41,7 +42,7 @@ AppAsset::register($this);
     <?php
     if (!Yii::$app->user->isGuest) {
         NavBar::begin([
-            'brandLabel' => '<div class="form-inline"><img src="/images/logo.png" width="20" height="20"> <span style="margin-left: 10px;">5 с плюсом KIDS</span></div>',
+            'brandLabel' => '<div class="form-inline"><img src="' . \Yii::$app->homeUrl . 'images/logo.png" width="20" height="20"> <span style="margin-left: 10px;">5 с плюсом KIDS</span></div>',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-default',
@@ -53,7 +54,7 @@ AppAsset::register($this);
                 'url' => ['user/update'],
             ],
             [
-                'label' => '<span class="icon icon-exit"></span>',
+                'label' => '<span class="fas fa-sign-out-alt"></span>',
                 'encode' => false,
                 'url' => ['site/logout'],
             ],
@@ -68,7 +69,7 @@ AppAsset::register($this);
 
     <div class="container">
         <?php if (!Yii::$app->user->isGuest): ?>
-            <nav class="hidden-print" role="navigation">
+            <nav class="hidden-print">
                 <?=  Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]); ?>
             </nav>
         <?php endif; ?>
@@ -79,10 +80,11 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Exclusive education <?= date('Y') ?></p>
-
-        <p class="pull-right hidden-xs hidden-print"><?= Yii::powered() ?></p>
-        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-xs-12">
+                <p>&copy; Exclusive education <?= date('Y') ?></p>
+            </div>
+        </div>
     </div>
 </footer>
 

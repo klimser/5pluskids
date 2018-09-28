@@ -1,9 +1,10 @@
-.placeholder {
+ol.nested-sortable-container .ui-sortable-placeholder {
     outline: 1px dashed #4183C4;
     background: #DEF;
+    min-height: 15px;
 }
 
-.mjs-nestedSortable-error {
+ol.nested-sortable-container .mjs-nestedSortable-error {
     background: #fbe3e4;
     border-color: transparent;
 }
@@ -29,12 +30,6 @@ ol.nested-sortable-container li div {
 
 li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
     border-color: #999;
-}
-
-.disclose, .expandEditor {
-    cursor: pointer;
-    width: 20px;
-    display: none;
 }
 
 ol.nested-sortable-container li.mjs-nestedSortable-collapsed > ol {

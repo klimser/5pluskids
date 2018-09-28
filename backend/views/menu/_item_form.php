@@ -18,9 +18,9 @@ if (!isset($config)) $config = [];
     <?= Html::activeHiddenInput($model, 'id'); ?>
     <?= Html::activeHiddenInput($model, 'menu_id'); ?>
 
-    <?= $form->field($model, 'webpage_id')->listBox(ArrayHelper::map(Webpage::find()->orderBy(['module_id' => SORT_ASC, 'title' =>SORT_ASC])->all(), 'id', 'title'), ['onclick' => 'MenuItem.setType(this, "webpage_id");', 'onfocus' => 'MenuItem.setType(this, "webpage_id");']) ?>
+    <?= $form->field($model, 'webpage_id')->listBox(ArrayHelper::map(Webpage::find()->orderBy(['module_id' => SORT_ASC, 'title' =>SORT_ASC])->all(), 'id', 'title'), ['onclick' => 'Menu.setItemType(this, "webpage_id");', 'onfocus' => 'Menu.setItemType(this, "webpage_id");']) ?>
 
-    <?= $form->field($model, 'url')->textInput(['maxlength' => true, 'onclick' => 'MenuItem.setType(this, "url");', 'onfocus' => 'MenuItem.setType(this, "url");']) ?>
+    <?= $form->field($model, 'url')->textInput(['maxlength' => true, 'onclick' => 'Menu.setItemType(this, "url");', 'onfocus' => 'Menu.setItemType(this, "url");']) ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 

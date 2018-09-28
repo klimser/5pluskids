@@ -16,7 +16,18 @@ return [
             'tablePrefix' => $params['db-tablePrefix'],
         ],
         'assetManager' => [
-            'linkAssets' => false,
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js' => []
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => []
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => []
+                ],
+            ],
+            'linkAssets' => true,
             'appendTimestamp' => false,
             'hashCallback' => function($path) {
                 $getLatestModifyDate = function($filePath) use (&$getLatestModifyDate) {

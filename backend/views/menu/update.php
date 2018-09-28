@@ -8,8 +8,7 @@ use \common\models\MenuItem;
 /* @var $newItem MenuItem */
 /* @var $editItem MenuItem */
 
-\backend\assets\MenuAsset::register($this);
-$this->registerJs('Menu.id = ' . $menu->id . ';');
+$this->registerJs('Menu.id = ' . $menu->id . '; NestedSortable.init("ol.nested-sortable-container");');
 
 $this->title = 'Изменить меню: ' . ' ' . $menu->name;
 $this->params['breadcrumbs'][] = ['label' => 'Меню', 'url' => ['index']];
@@ -58,7 +57,7 @@ $renderMenuItem = function (MenuItem $menuItem) use (&$renderMenuItem) { ?>
                 <button class="btn btn-info" onclick="$('#new_element_form').removeClass('hidden'); $(this).hide();">Добавить новый элемент</button>
                 <fieldset <?php if ($newItem->isNewRecord): ?>class="hidden"<?php endif; ?> id="new_element_form">
                     <legend>Добавить новый элемент</legend>
-                    <?= $this->render('/menu_item/_form', [
+                    <?= $this->render('_item_form', [
                         'model' => $newItem,
                         'config' => ['action' => '/menu/add-item'],
                     ]); ?>
@@ -67,7 +66,7 @@ $renderMenuItem = function (MenuItem $menuItem) use (&$renderMenuItem) { ?>
         </div>
         <div id="edit_element_form" class="col-xs-12 col-sm-12 col-md-6 <?php if (!isset($editItem)): ?> hidden<?php endif; ?>">
             <?php if (!isset($editItem)) {$editItem = new MenuItem(); $editItem->menu_id = $menu->id;} ?>
-            <?= $this->render('/menu_item/_form', [
+            <?= $this->render('_item_form', [
                 'model' => $editItem,
                 'config' => ['action' => '/menu/update-item'],
             ]); ?>

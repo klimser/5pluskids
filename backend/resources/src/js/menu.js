@@ -14,7 +14,7 @@ var Menu = {
         }
         editForm.find("#menuitem-id").val(src.data("id"));
         editForm.find("#menuitem-title").val(src.data("title"));
-        editForm.find("#menuitem-active").prop('checked', src.data("active") == 1);
+        editForm.find("#menuitem-active").prop('checked', src.data("active") === 1);
         editForm.find("#menuitem-attr").val(src.data("attr"));
         editForm.find(".btn").text("Сохранить");
 
@@ -38,5 +38,11 @@ var Menu = {
                 }
             });
         }
+    },
+    setItemType: function(e, type) {
+        var muted = (type === "url") ? "webpage_id" : "url";
+        var container = $(e).closest(".menu-item-form");
+        container.find(".field-menuitem-" + type).removeClass("disabled-group");
+        container.find(".field-menuitem-" + muted).addClass("disabled-group");
     }
 };
