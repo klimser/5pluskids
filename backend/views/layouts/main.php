@@ -9,8 +9,6 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
-?>
-<?php
 $this->beginPage();
 $this->render('/grunt-assets');
 ?>
