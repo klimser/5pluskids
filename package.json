@@ -10,7 +10,6 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.1.1",
     "bootstrap": "3",
-    "chosen-js": "^1.8.7",
     "grunt": "0.x.x",
     "grunt-assets-versioning": "^1.0.4",
     "grunt-contrib-clean": "0.x.x",
