@@ -40,7 +40,7 @@ class StartCommand extends SystemCommand
     {
         $message = $this->getMessage();
         $chat_id = $message->getChat()->getId();
-        $text    = "Привет!\nЯ буду присылать вам оповещения о новых заявках, отзывах и сообщениях!\nЯ не принимаю никаких комманд";
+        $text    = "Привет!\nЯ буду присылать вам оповещения о новых заявках, отзывах и сообщениях!\nЯ не принимаю никаких команд";
         $data = [
             'chat_id' => $chat_id,
             'text'    => $text,
