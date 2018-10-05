@@ -11,6 +11,7 @@ use common\widgets\Alert;
 
 $this->beginPage();
 $this->render('/grunt-assets');
+$this->registerJs('yii.init();');
 ?>
 
 <!DOCTYPE html>

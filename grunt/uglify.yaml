@@ -6,6 +6,7 @@ vendors_front:
   files:
     "frontend/web/assets/grunt/js/vendor.js":
       - "node_modules/jquery/dist/jquery.js"
+      - "vendor/yiisoft/yii2/assets/yii.js"
       - "node_modules/bootstrap/js/transition.js"
       - "node_modules/bootstrap/js/alert.js"
       - "node_modules/bootstrap/js/button.js"
@@ -27,6 +28,7 @@ vendors_back:
   files:
     "backend/web/assets/grunt/js/vendor.js":
       - "node_modules/jquery/dist/jquery.js"
+      - "vendor/yiisoft/yii2/assets/yii.js"
       - "vendor/bower-asset/jquery-ui/jquery-ui.js"
       - "node_modules/bootstrap/js/transition.js"
       - "node_modules/bootstrap/js/alert.js"
