@@ -13,3 +13,5 @@ foreach ($files as $file) {
         $this->registerJsFile(Yii::$app->homeUrl . $file, ['position' => \yii\web\View::POS_END]);
     }
 }
+
+$this->registerJs('yii.init();');
