@@ -14,11 +14,11 @@ return [
     'modules' => [],
     'components' => [
         'user' => [
-            'identityClass' => 'backend\models\User',
+            'identityClass' => \backend\models\User::class,
             'enableAutoLogin' => true,
         ],
         'authManager' => [
-            'class' => 'yii\rbac\PhpManager',
+            'class' => \yii\rbac\PhpManager::class,
             'ruleFile' => '@backend/config/rbac/rules.php',
             'itemFile' => '@backend/config/rbac/items.php',
             'assignmentFile' => '@backend/config/rbac/assignments.php',
@@ -28,7 +28,7 @@ return [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => \yii\log\FileTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
             ],
