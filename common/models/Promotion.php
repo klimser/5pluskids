@@ -33,7 +33,7 @@ class Promotion extends ActiveRecord
         return [
             'neededImageWidth' => 350,
             'neededImageHeight' => 0,
-            'imageFolder' => 'news',
+            'imageFolder' => 'promotions',
             'imageDBField' => 'image',
             'imageFilenameBase' => 'name',
             'imageFilenameAppendix' => 'id',

@@ -6,9 +6,9 @@ use backend\controllers\traits\Active;
 use common\models\Module;
 use common\models\Promotion;
 use common\models\Webpage;
-use yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * PromotionController implements the CRUD actions for Promotion model.
@@ -46,7 +46,7 @@ class PromotionController extends AdminController
      */
     public function actionCreate()
     {
-        return $this->processSubjectData(new Promotion());
+        return $this->processPromotionData(new Promotion());
     }
 
     /**
@@ -58,24 +58,24 @@ class PromotionController extends AdminController
      */
     public function actionUpdate($id)
     {
-        return $this->processSubjectData($this->findModel($id));
+        return $this->processPromotionData($this->findModel($id));
     }
 
     /**
      * @param Promotion $promotion
-     * @return string|yii\web\Response
+     * @return string|\yii\web\Response
      * @throws \Exception
      */
-    public function processSubjectData(Promotion $promotion)
+    public function processPromotionData(Promotion $promotion)
     {
-        if (Yii::$app->request->isPost) {
+        if (\Yii::$app->request->isPost) {
             $isNew = $promotion->isNewRecord;
-            $transaction = Promotion::getDb()->beginTransaction();
+            $transaction = \Yii::$app->getDb()->beginTransaction();
             try {
-                /*     Сохраняем новость      */
-                if (!$promotion->load(Yii::$app->request->post())) \Yii::$app->session->addFlash('error', 'Form data not found');
+                /*     Сохраняем акцию      */
+                if (!$promotion->load(\Yii::$app->request->post())) \Yii::$app->session->addFlash('error', 'Form data not found');
                 else {
-                    $promotion->imageFile = yii\web\UploadedFile::getInstance($promotion, 'imageFile');
+                    $promotion->imageFile = UploadedFile::getInstance($promotion, 'imageFile');
                     if (!$promotion->save()) {
                         $promotion->moveErrorsToFlash();
                         $transaction->rollBack();
@@ -93,7 +93,7 @@ class PromotionController extends AdminController
                             } else {
                                 $webpage = $promotion->webpage;
                             }
-                            if (!$webpage->load(Yii::$app->request->post())) {
+                            if (!$webpage->load(\Yii::$app->request->post())) {
                                 \Yii::$app->session->addFlash('error', 'Form data not found');
                                 $transaction->rollBack();
                             } elseif (!$webpage->save()) {
@@ -102,7 +102,7 @@ class PromotionController extends AdminController
                             } else {
                                 if (!$promotion->webpage_id) $promotion->link('webpage', $webpage);
                                 $transaction->commit();
-                                Yii::$app->session->addFlash('success', $isNew ? 'Акция добавлена' : 'Акция обновлена');
+                                \Yii::$app->session->addFlash('success', $isNew ? 'Акция добавлена' : 'Акция обновлена');
                                 return $this->redirect(['update', 'id' => $promotion->id]);
                             }
                         }
@@ -132,7 +132,7 @@ class PromotionController extends AdminController
     public function actionDelete($id)
     {
         $news = $this->findModel($id);
-        $transaction = Promotion::getDb()->beginTransaction();
+        $transaction = \Yii::$app->getDb()->beginTransaction();
         try {
             if (!$news->delete()) {
                 $news->moveErrorsToFlash();
@@ -160,13 +160,13 @@ class PromotionController extends AdminController
             $webpage->module_id = $moduleId;
         }
 
-        if (Yii::$app->request->isPost) {
-            if (!$webpage->load(Yii::$app->request->post())) {
+        if (\Yii::$app->request->isPost) {
+            if (!$webpage->load(\Yii::$app->request->post())) {
                 \Yii::$app->session->addFlash('error', 'Form data not found');
             } elseif (!$webpage->save()) {
                 $webpage->moveErrorsToFlash();
             } else {
-                Yii::$app->session->addFlash('success', 'Изменения сохранены');
+                \Yii::$app->session->addFlash('success', 'Изменения сохранены');
                 return $this->redirect(['page']);
             }
         }
@@ -186,7 +186,7 @@ class PromotionController extends AdminController
         if (($model = Promotion::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested news does not exist.');
+            throw new NotFoundHttpException('The requested promotion does not exist.');
         }
     }
 }

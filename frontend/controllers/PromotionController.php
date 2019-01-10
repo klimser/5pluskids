@@ -12,7 +12,7 @@ use yii\web\NotFoundHttpException;
 class PromotionController extends Controller
 {
     /**
-     * Displays a Subjects page.
+     * Displays a Promotions page.
      * @param $webpage Webpage
      * @return mixed
      */
@@ -36,7 +36,7 @@ class PromotionController extends Controller
     }
 
     /**
-     * Displays a single Subject model.
+     * Displays a single Promotion model.
      * @param string $id
      * @param Webpage $webpage
      * @return mixed

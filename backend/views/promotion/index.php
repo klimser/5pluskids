@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'active',
                 'format' => 'html',
                 'content' => function ($model, $key, $index, $column) {
-                    return Html::activeCheckbox($model, 'active', ['label' => null, 'onchange' => 'Main.changeEntityActive("news", ' . $model->id . ', this);']);
+                    return Html::activeCheckbox($model, 'active', ['label' => null, 'onchange' => 'Main.changeEntityActive("promotion", ' . $model->id . ', this);']);
                 },
                 'options' => [
                     'align' => 'center',
