@@ -124,10 +124,9 @@ trait UploadImage
             $fileName2x = $fileName . '@2x.' . $this->$uploadedField->extension;
             $fileName .= '.' . $this->$uploadedField->extension;
 
-            $resizeImage = function(string $sourcePath, string $destPath, int $width, int $height = 0) {
+            $resizeImage = function(string $sourcePath, string $destPath, int $width, int $height = 0) use ($config) {
                 /** @var Source $source */
-                $source = \Yii::$app->tinifier->getFromFile($sourcePath);
-                if ($source) {
+                if ((!array_key_exists('skipTinify', $config) || !$config['skipTinify']) && $source = \Yii::$app->tinifier->getFromFile($sourcePath)) {
                     $params = ['method' => 'scale', 'width' => $width];
                     if ($height > 0) {
                         $params['height'] = $height * 2;

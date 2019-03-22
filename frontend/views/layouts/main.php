@@ -44,7 +44,7 @@ $this->render('/grunt-assets');
             <div class="row">
                 <div class="logo-block col-xs-5 col-sm-3 col-lg-2 text-center">
                     <a href="<?= Yii::$app->homeUrl; ?>">
-                        <img src="<?= Yii::$app->homeUrl; ?>assets/grunt/images/logo.svg" alt="Учебный центр &quot;Пять с плюсом KIDS&quot;" title="Учебный центр &quot;Пять с плюсом KIDS&quot;">
+                        <img src="<?= Yii::$app->homeUrl; ?>assets/grunt/images/logo_kids.svg" alt="Учебный центр &quot;Пять с плюсом KIDS&quot;" title="Учебный центр &quot;Пять с плюсом KIDS&quot;">
                     </a>
                 </div>
                 <div class="phone-block col-xs-7 col-sm-3 col-md-5 col-lg-6">

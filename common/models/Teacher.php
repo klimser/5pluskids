@@ -41,6 +41,7 @@ class Teacher extends ActiveRecord
             'imageDBField' => 'photo',
             'imageFilenameBase' => 'name',
             'imageFilenameAppendix' => 'id',
+            'skipTinify' => true,
         ];
     }
 
@@ -154,7 +155,8 @@ class Teacher extends ActiveRecord
             $base->compositeImage($over, \Imagick::COMPOSITE_DEFAULT, 0, 0);
             $base->writeImage($fileName);
 
-            $source = \Tinify\fromFile($fileName);
+            /** @var \Tinify\Source $source */
+            $source = \Yii::$app->tinifier->getFromFile($fileName);
             $source->toFile($fileName);
         } elseif (extension_loaded('gd') && function_exists('gd_info')) {
             $baseInfo = getimagesize($imagePath);

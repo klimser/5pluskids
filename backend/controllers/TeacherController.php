@@ -159,6 +159,33 @@ class TeacherController extends AdminController
     }
 
     /**
+     * Deletes an existing Teacher model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param string $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     * @throws \Exception
+     * @throws \yii\db\Exception
+     */
+    public function actionDelete($id)
+    {
+        $teacher = $this->findModel($id);
+        $transaction = Teacher::getDb()->beginTransaction();
+        try {
+            if (!$teacher->delete()) {
+                $teacher->moveErrorsToFlash();
+                $transaction->rollBack();
+            } else {
+                $transaction->commit();
+            }
+        } catch(\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
+        return $this->redirect(['index']);
+    }
+
+    /**
      * Finds the Teacher model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
