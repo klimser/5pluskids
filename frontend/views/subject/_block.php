@@ -10,7 +10,7 @@
             <img src="<?= $subject->imageUrl; ?>" class="max-width-100">
         </a>
     <?php endif; ?>
-    <h2><a href="<?= Yii::$app->homeUrl . $subject->webpage->url; ?>"><?= $subject->name; ?></a></h2>
+    <h2 <?= $subject->image ? ' class="max-width-50 title-after-image"' : ''; ?>><a href="<?= Yii::$app->homeUrl . $subject->webpage->url; ?>"><?= $subject->name; ?></a></h2>
     <p><?= nl2br($subject->description); ?></p>
     <a href="<?= Yii::$app->homeUrl . $subject->webpage->url; ?>">
         <span class="icon icon-details"></span>
